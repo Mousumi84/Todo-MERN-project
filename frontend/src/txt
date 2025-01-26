@@ -1,0 +1,19 @@
+ #addtask {
+            color: brown;
+            display: flex;
+            justify-content: end;
+            margin-right: 30px;
+            
+            span {
+                font-size: 50px;
+                font-weight: bolder;
+                border: solid 2px rgba(255, 0, 0, 0.418);
+                border-radius: 50%;
+                background-color: rgb(218, 218, 131);
+                padding: 5px;
+                position: relative;
+            }
+            span:active {
+                border: solid 2px rgba(0, 0, 0, 0.418);
+            }
+        }
