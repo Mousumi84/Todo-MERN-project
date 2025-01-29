@@ -2,7 +2,7 @@ const { savetodo, readTodaytodo, readUpcomingtodo, readCompletedtodo, readPendin
 const { todoCheck, todoCheckeditdata } = require("../Utils/todoUtil");
 
 
-//const userid="ABCd123xyz098"
+const userid="6794f9814e3dfe26162b8699"
 
 
 // 1. CREATE TODO------------------------------------------------------------
@@ -10,7 +10,7 @@ const createTodoController=async (req,res) => {
     console.log("CREATE TODO");
     
     const {title,content,dueDateTime}=req.body;
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     //Todo check:
     try {
@@ -18,6 +18,7 @@ const createTodoController=async (req,res) => {
     } catch (error) {  
         return res.send({
             status:400,
+            message:error,
             error:error,
         });
     }
@@ -47,7 +48,7 @@ const createTodoController=async (req,res) => {
 // 2. READ ALL TODO------------------------------------------------------------
 const readAllTodoController=async (req,res) => {
     console.log("READ ALL TODO");
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     try {
         const todoDb=await readAlltodo({userid});
@@ -71,7 +72,7 @@ const readAllTodoController=async (req,res) => {
 // 3. READ TODAY'S TODO------------------------------------------------------------
 const readTodayTodoController=async (req,res) => {
     console.log("READ TODAY'S TODO");
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     try {
         const todoDb=await readTodaytodo({userid});
@@ -95,7 +96,7 @@ const readTodayTodoController=async (req,res) => {
 // 4. READ UPCOMING TODO------------------------------------------------------------
 const readUpcomingTodoController=async (req,res) => {
     console.log("READ UPCOMING TODO");
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     try {
         const todoDb=await readUpcomingtodo({userid});
@@ -119,7 +120,7 @@ const readUpcomingTodoController=async (req,res) => {
 // 5. READ COMPLETED TODO------------------------------------------------------------
 const readCompletedTodoController=async (req,res) => {
     console.log("READ COMPLETED TODO");
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     try {
         const todoDb=await readCompletedtodo({userid});
@@ -143,7 +144,7 @@ const readCompletedTodoController=async (req,res) => {
 // 6. READ PENDING TODO------------------------------------------------------------
 const readPendingTodoController=async (req,res) => {
     console.log("READ PENDING TODO");
-    const userid=req.session.user.userid;
+    // const userid=req.session.user.userid;
     
     try {
         const todoDb=await readPendingtodo({userid});
@@ -167,7 +168,7 @@ const readPendingTodoController=async (req,res) => {
 // 7. EDIT COMPLETED TODO------------------------------------------------------------
 const editCompletedTodoController=async (req,res) => {
     console.log("EDIT COMPLETED TODO");
-    const todoid=req.body.todoid;
+    const todoid=req.query.todoid;
     
     try {
         const todoDb=await editCompletedtodo({todoid});
@@ -191,7 +192,7 @@ const editCompletedTodoController=async (req,res) => {
 // 8. EDIT TODO------------------------------------------------------------
 const editTodoController=async (req,res) => {
     console.log("EDIT TODO");
-    const todoid=req.body.todoid;
+    const todoid=req.query.todoid;
     const newttl=req.body.title;
     const newcnt=req.body.content;
 
@@ -202,6 +203,7 @@ const editTodoController=async (req,res) => {
     } catch (error) {  
         return res.send({
             status:400,
+            message:error,
             error:error,
         });
     }
@@ -213,6 +215,7 @@ const editTodoController=async (req,res) => {
         return res.send({
             status:200,
             data:todoDb,
+            message:"Edit Successfull",
         });
     } catch (error) {
         return res.send({
@@ -229,7 +232,7 @@ const editTodoController=async (req,res) => {
 // 9. DELETE TODO------------------------------------------------------------
 const deleteTodoController=async (req,res) => {
     console.log("DELETE TODO");
-    const todoid=req.body.todoid;
+    const todoid=req.query.todoid;
     
 
     try {

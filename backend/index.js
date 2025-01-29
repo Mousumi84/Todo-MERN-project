@@ -34,14 +34,15 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(
     session({
-        cookie: { secure: false, // Set `true` if using HTTPS 
-         httpOnly: true, // Prevents client-side JavaScript access 
-         maxAge: 1000 * 60 * 60 * 24, // 1 day 
+        cookie: { 
+            secure: false, // Set `true` if using HTTPS 
+            httpOnly: true, // Prevents client-side JavaScript access 
+            maxAge: 1000 * 60 * 60 * 24, // 1 day 
         },
         secret: process.env.SECRET,
         store: store,
         resave: false,
-        saveUninitialized: false,
+        saveUninitialized: true,
     })
 );
 

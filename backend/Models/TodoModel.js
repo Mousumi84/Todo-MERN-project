@@ -1,6 +1,5 @@
 const { todoModel } = require("../Schemas/TodoSchema");
 
-const LIMIT=3;
 
 function savetodo({userid,title,content,dueDateTime}) {
     return new Promise(async (resolve,reject) => {
@@ -110,7 +109,7 @@ function readCompletedtodo({userid}) {
         try {
             const todoDb=await todoModel.aggregate([
                 {
-                    $match:{ "isCompleted": { $eq: true } },
+                    $match:{ userid: userid, "isCompleted": { $eq: true } },
                 },
                 {
                     $sort:{ createdAt: -1 }

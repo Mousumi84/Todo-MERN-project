@@ -38,9 +38,9 @@ function Taskboard({setPoptask}) {
             console.log(response);
 
             if(response.data.status !== 200) {
-                alert(response.data.error);
+                alert(response.data.message);
                 return;
-            }
+            }                       
 
             navigate('/dashboard/all');
             

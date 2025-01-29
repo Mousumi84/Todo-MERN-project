@@ -53,21 +53,7 @@
                 background-color: rgba(142, 144, 125, 0.104);
                 border-radius: 10px;
             }
-            #all {
-                color: rgb(187, 255, 0);;
-            }
-            #tdy {
-                color: rgb(8, 98, 234);
-            }
-            #upcm {
-                color: rgb(0, 255, 12);
-            }
-            #cmp {
-                color: rgb(161, 0, 255);
-            }
-            #inpg {
-                color: rgb(255, 42, 0);
-            }
+            
             
 
             #icon {
@@ -145,7 +131,6 @@
             #createTask {
                 padding: 10px ;
 
-
                 #addtsk {
                     display: flex;
                     flex-direction: column;
@@ -179,8 +164,9 @@
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-                overflow-y: scroll;
-                scrollbar-width: thin;
+                overflow-y: auto;
+                scrollbar-width: none;
+                
                
                 .todos {
                     box-shadow: 1px 1px 5px 1px rgba(113, 110, 70, 0.296);
@@ -188,19 +174,34 @@
                     display: flex;
                     flex-direction: row;
                     gap: 10px;
-                    height: 140px;
 
                     .tddt {
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
                         width: 90%;
+                        color: black;
+
+                        #title {
+                            color: rgb(255, 38, 38);
+                            font-size: 23px;
+                        }
+                        #title {
+                            color: rgb(41, 99, 56);
+                            font-size: medium;
+                        }
                     }
                     .dt {
                         display: flex;
-                        flex-direction: column;
                         gap: 10px;
-                        
+                        font-size: 11px;
+
+                        span {
+                            background-color: rgb(249, 138, 138);
+                            border-radius: 12px;
+                            padding: 5px;
+                            color: rgb(5, 51, 255);
+                        }
                     }
 
                     .btn {
@@ -231,5 +232,47 @@
                 background-color: red;
             }
         }
+
+        #editboard {
+            height: 27%;
+            width: 60%;
+            border: solid 2px black;
+            border-radius: 10px;
+            position: absolute;
+            background-color: rgb(255, 249, 188);
+            padding: 10px;
+
+            #edittsk {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #cross {
+                color: white;
+                background-color: red;
+                box-shadow: 2px 2px 10px 2px rgb(255, 0, 0);
+                border: none;
+                position: absolute;
+                right: -25px;
+                top: -4px;
+            }
+        }
+    }
+
+
+    #all {
+        color: rgb(187, 255, 0);;
+    }
+    #tdy {
+        color: rgb(8, 98, 234);
+    }
+    #upcm {
+        color: rgb(0, 255, 12);
+    }
+    #cmp {
+        color: rgb(161, 0, 255);
+    }
+    #pnd {
+        color: rgb(255, 42, 0);
     }
 }

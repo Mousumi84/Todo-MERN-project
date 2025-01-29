@@ -13,11 +13,19 @@ export function dueTime(dt) {
         hour=day.getUTCHours() - 12;
         ampm="pm";
     }
+    else if(day.getUTCHours() == 0) {
+        hour=12;
+        ampm="am";
+    }
     else {
         hour=day.getUTCHours();
         ampm="am";
     }
 
+
+    if(hour<10) {
+    return `0${hour}:${day.getUTCMinutes()} ${ampm}`;
+    }
     return `${hour}:${day.getUTCMinutes()} ${ampm}`;
 }
 

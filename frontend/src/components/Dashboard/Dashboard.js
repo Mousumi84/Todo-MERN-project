@@ -7,7 +7,6 @@ import Taskboard from "./Taskboard";
 
 function Dashboard() {
     const [poptask,setPoptask]=useState(false);
-    const popupRef = useRef(null);
     const navigate=useNavigate();
     const {isLogin,setIsLogin,loginInfo}=useContext(details);
 
@@ -46,12 +45,6 @@ function Dashboard() {
 
    // const first=loginInfo.name[0];
 
-    const handleBlur = (event) => {
-        event.preventDefault();
-       console.log("work");
-    };
-
-
     return (<>
         <div id="dashboard">
             <div id="box">
@@ -72,7 +65,7 @@ function Dashboard() {
                     <div id="cmp" className="cont" onClick={() => navigate('/dashboard/completed')}>
                         <span className="material-icons-outlined">checklist</span><span>COMPLETED</span>
                     </div>
-                    <div id="inpg" className="cont" onClick={() => navigate('/dashboard/pending')}>
+                    <div id="pnd" className="cont" onClick={() => navigate('/dashboard/pending')}>
                         <span className="material-icons-outlined">edit_calendar</span><span>PENDING</span>
                     </div>
                     <ul id="icon">
@@ -101,7 +94,7 @@ function Dashboard() {
                 <div id="addtask" onClick={()=>setPoptask(!poptask)}>
                     <span className="material-icons-outlined">add_task</span>
                 </div>
-                {poptask && <div id="taskboard" ref={popupRef} onBlur={handleBlur}>
+                {poptask && <div id="taskboard">
                                 <Taskboard setPoptask={setPoptask}/>
                             </div>}
             </div>

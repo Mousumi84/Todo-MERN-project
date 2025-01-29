@@ -1,38 +1,54 @@
-import todo from "../../todo";
+//import todo from "../../todo";
+import { useEffect, useState } from "react";
 import 'material-icons/iconfont/material-icons.css';
+import axios from "axios";
+import { dueDate,dueTime } from "./utils";
 
 function Pending() {
+    const [todo,setTodo]=useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/todo/readpending`)
+        .then((response) => {
+    
+            if(response.data.status !== 200) {
+                alert(response.data.message);
+            }
+            else {
+                const data=response.data.data;
+                setTodo(...todo,data);
+            }
+        })
+        .catch((error) => {
+            alert("An error occured");
+        });
+
+    },[]);
+    
+    console.log(todo);
+
+
     return (<>
-        <div id="alltodos" className="todocnt">
+        <div id="pnd" className="todocnt">
             <h2>PENDING TODO : </h2>
             <div className="todolist">
             {
-                
+                todo.length === 0 ? (<p>No todos available</p>) : (
                 todo.map(item => {
                     return (
-                        <div className="todos"  key={item.userid}>
+                        <div className="todos"  key={item._id}>
                             <div className="tddt">
-                                <div className="tt-ct">
-                                    <div>{item.title}</div>
-                                    <div>{item.content}</div>
-                                </div>
+                                <div id="title">{item.title}</div>
+                                <div id="content">{item.content}</div>
                                 <div className="dt">
-                                    <div>DueDate:</div>
-                                    <div>DueTime:</div>
+                                    <span>{dueDate(item.dueDateTime)}</span>
+                                    <span>{dueTime(item.dueDateTime)}</span>
                                 </div>
-                            </div>
-                            <div className="btn">
-                                <button>
-                                    <span className="material-icons-outlined">edit</span>
-                                </button>
-                                <button>
-                                    <span className="material-icons-outlined">delete</span>
-                                </button>
                             </div>
                         </div>
                     )
                 })
-
+                )
             }
             </div>
         </div>

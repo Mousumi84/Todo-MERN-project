@@ -11,7 +11,7 @@ function Home() {
                 <img src='../todo.jpg' alt="Todo logo" />
                 <div>
                     <div id="day">{days[date.getDay()]}</div>
-                    <div id="date">{date.getDate()}/{date.getMonth()}/{date.getFullYear()}</div>
+                    <div id="date">{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</div>
                 </div>
             </nav>
 
